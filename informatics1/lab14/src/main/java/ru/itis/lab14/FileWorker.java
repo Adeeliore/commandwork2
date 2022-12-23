@@ -7,6 +7,7 @@ import java.util.*;
 
 public class FileWorker {
     private String str;
+    private String[] splitted;
     public String fileReader(String fileName) {
 
         try {
@@ -17,5 +18,31 @@ public class FileWorker {
         return str;
 
     }
+    public String readEdit(){
+        if (fileReader("kniga1.txt") != null){
+            String resultString;
+            resultString = fileReader("kniga1.txt").replaceAll("\\n\\r|\\r|\\n|\\s| ", "_");
+            resultString = resultString.replaceAll("[^(A-Za-zА-Яа-я|_) ]", "");
+            resultString = resultString.replaceAll("", "_");
+            resultString = resultString.replaceAll("", "_");
+            resultString = resultString.toUpperCase();
+            return resultString;
+        }
+        return "строки не существует";
+    }
+    public String[] readSplit() {
+
+        splitted = readEdit().split("_");
+        Arrays.sort(splitted);
+        return splitted;
+
+    }
+
+    public int lengthCounter() {
+        int counter;
+        counter = readSplit().length;
+        return counter;
+    }
+
 
 }
